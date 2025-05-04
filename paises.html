@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Países al Azar</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: #f4f4f4;
+        padding: 50px;
+      }
+      h1 {
+        color: #333;
+      }
+      .pais {
+        font-size: 2em;
+        margin: 10px 0;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+      button:hover {
+        background-color: #0051a3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Selecciona dos países al azar</h1>
+    <div class="pais" id="pais1">?</div>
+    <div class="pais" id="pais2">?</div>
+    <button onclick="seleccionarPaises()">Seleccionar Países</button>
+
+    <script>
+      const paises = [
+        "Afganistán",
+        "Albania",
+        "Alemania",
+        "Andorra",
+        "Angola",
+        "Antigua y Barbuda",
+        "Arabia Saudita",
+        "Argelia",
+        "Argentina",
+        "Armenia",
+        "Australia",
+        "Austria",
+        "Azerbaiyán",
+        "Bahamas",
+        "Bangladés",
+        "Barbados",
+        "Baréin",
+        "Bélgica",
+        "Belice",
+        "Benín",
+        "Bielorrusia",
+        "Birmania",
+        "Bolivia",
+        "Bosnia y Herzegovina",
+        "Botsuana",
+        "Brasil",
+        "Brunéi",
+        "Bulgaria",
+        "Burkina Faso",
+        "Burundi",
+        "Bután",
+        "Cabo Verde",
+        "Camboya",
+        "Camerún",
+        "Canadá",
+        "Catar",
+        "Chad",
+        "Chile",
+        "China",
+        "Chipre",
+        "Colombia",
+        "Comoras",
+        "Corea del Norte",
+        "Corea del Sur",
+        "Costa de Marfil",
+        "Costa Rica",
+        "Croacia",
+        "Cuba",
+        "Dinamarca",
+        "Dominica",
+        "Ecuador",
+        "Egipto",
+        "El Salvador",
+        "Emiratos Árabes Unidos",
+        "Eritrea",
+        "Eslovaquia",
+        "Eslovenia",
+        "España",
+        "Estados Unidos",
+        "Estonia",
+        "Etiopía",
+        "Filipinas",
+        "Finlandia",
+        "Fiyi",
+        "Francia",
+        "Gabón",
+        "Gambia",
+        "Georgia",
+        "Ghana",
+        "Granada",
+        "Grecia",
+        "Guatemala",
+        "Guinea",
+        "Guinea-Bisáu",
+        "Guinea Ecuatorial",
+        "Guyana",
+        "Haití",
+        "Honduras",
+        "Hungría",
+        "India",
+        "Indonesia",
+        "Irak",
+        "Irán",
+        "Irlanda",
+        "Islandia",
+        "Islas Marshall",
+        "Israel",
+        "Italia",
+        "Jamaica",
+        "Japón",
+        "Jordania",
+        "Kazajistán",
+        "Kenia",
+        "Kirguistán",
+        "Kiribati",
+        "Kuwait",
+        "Laos",
+        "Lesoto",
+        "Letonia",
+        "Líbano",
+        "Liberia",
+        "Libia",
+        "Liechtenstein",
+        "Lituania",
+        "Luxemburgo",
+        "Madagascar",
+        "Malasia",
+        "Malaui",
+        "Maldivas",
+        "Malí",
+        "Malta",
+        "Marruecos",
+        "Mauricio",
+        "Mauritania",
+        "México",
+        "Micronesia",
+        "Moldavia",
+        "Mónaco",
+        "Mongolia",
+        "Montenegro",
+        "Mozambique",
+        "Namibia",
+        "Nauru",
+        "Nepal",
+        "Nicaragua",
+        "Níger",
+        "Nigeria",
+        "Noruega",
+        "Nueva Zelanda",
+        "Omán",
+        "Países Bajos",
+        "Pakistán",
+        "Palaos",
+        "Palestina",
+        "Panamá",
+        "Papúa Nueva Guinea",
+        "Paraguay",
+        "Perú",
+        "Polonia",
+        "Portugal",
+        "Reino Unido",
+        "República Centroafricana",
+        "República Checa",
+        "República del Congo",
+        "República Democrática del Congo",
+        "República Dominicana",
+        "Ruanda",
+        "Rumania",
+        "Rusia",
+        "Samoa",
+        "San Cristóbal y Nieves",
+        "San Marino",
+        "San Vicente y las Granadinas",
+        "Santa Lucía",
+        "Santo Tomé y Príncipe",
+        "Senegal",
+        "Serbia",
+        "Seychelles",
+        "Sierra Leona",
+        "Singapur",
+        "Siria",
+        "Somalia",
+        "Sri Lanka",
+        "Suazilandia",
+        "Sudáfrica",
+        "Sudán",
+        "Sudán del Sur",
+        "Suecia",
+        "Suiza",
+        "Surinam",
+        "Tailandia",
+        "Tanzania",
+        "Tayikistán",
+        "Timor Oriental",
+        "Togo",
+        "Tonga",
+        "Trinidad y Tobago",
+        "Túnez",
+        "Turkmenistán",
+        "Turquía",
+        "Tuvalu",
+        "Ucrania",
+        "Uganda",
+        "Uruguay",
+        "Uzbekistán",
+        "Vanuatu",
+        "Vaticano",
+        "Venezuela",
+        "Vietnam",
+        "Yemen",
+        "Yibuti",
+        "Zambia",
+        "Zimbabue",
+      ];
+
+      function seleccionarPaises() {
+        let copia = [...paises];
+        const indice1 = Math.floor(Math.random() * copia.length);
+        const pais1 = copia.splice(indice1, 1)[0];
+        const indice2 = Math.floor(Math.random() * copia.length);
+        const pais2 = copia[indice2];
+
+        document.getElementById("pais1").textContent = pais1;
+        document.getElementById("pais2").textContent = pais2;
+      }
+    </script>
+  </body>
+</html>
